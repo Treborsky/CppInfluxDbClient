@@ -22,10 +22,13 @@ void handle_incoming_tcp_connection(sockpp::tcp_socket sock) {
 
   while ((n = sock.read(buf, sizeof(buf))) > 0) {
     sock.write_n(buf, n);
-    std::cout << "Payload received: " << buf << std::endl;
+    std::cout << buf << std::endl;
   }
 
-  std::cout << "Connection closed from " << sock.peer_address() << std::endl;
+  std::cout << "\n============\n"
+            << "Connection closed from " << sock.peer_address()
+            << "\n============\n"
+            << std::endl;
 }
 
 int main(int argc, char *argv[]) {
@@ -47,13 +50,16 @@ int main(int argc, char *argv[]) {
               << std::endl;
     return 1;
   }
-  std::cout << "Awaiting connections on port " << port << "..." << std::endl;
+  std::cout << "Awaiting connections on port \n" << port << "..." << std::endl;
 
   while (true) {
     sockpp::inet_address peer;
 
     sockpp::tcp_socket socket = acceptor.accept(&peer);
-    std::cout << "Received a connection request from " << peer << std::endl;
+    std::cout << "\n============\n"
+              << "Received a connection request from " << peer
+              << "\n============\n"
+              << std::endl;
 
     if (!socket) {
       std::cerr << "Error accepting incoming connection: "

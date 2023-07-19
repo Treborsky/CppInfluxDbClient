@@ -5,12 +5,11 @@
  *
  */
 
-#include "cpp_httplib/httplib.h"
+#include <httplib.h>
 
 #include <iostream>
 
 int main(int argc, char **argv) {
-
   std::cout << "CppInfluxDbClient - Robert Koziarski 2023 "
                "(https://github.com/Treborsky)"
             << '\n'
