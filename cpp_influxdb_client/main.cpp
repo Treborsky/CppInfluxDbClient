@@ -4,7 +4,7 @@
  * USE ALLOWED UNDER MIT LICENSE.
  *
  */
-
+#define CPPHTTPLIB_OPENSSL_SUPPORT
 #include <httplib.h>
 
 #include <iostream>
@@ -23,8 +23,8 @@ int main(int argc, char **argv) {
             << std::endl;
 
   // default HTTP endpoint
-  std::string address{"localhost"};
-  std::string port{"12345"};
+  std::string address{"https://eu-central-1-1.aws.cloud2.influxdata.com"};
+  std::string port{"80"};
 
   // parse command line provided endpoint
   if (argc > 1) {
@@ -52,12 +52,14 @@ int main(int argc, char **argv) {
   httplib::Client cli(endpoint);
 
   std::cout << "Sending POST request to server" << std::endl;
-  httplib::Headers post_headers{{"Authorization Token", "API_TOKEN"},
-                                {"Content-Type", "text/plain; charset=utf-8"},
-                                {"Accept", "application/json"}};
+  httplib::Headers post_headers{
+      {"Authorization Token",
+       "vxEubvMV7U6AJE_S7wZ4BZgIuSTBgVUK8wvy-"
+       "a6V87Jx4USdLTmA6Mx3lfq9SiF8EqOouCQlgIivTD-_4xEK0w=="},
+      {"Content-Type", "text/plain; charset=utf-8"},
+      {"Accept", "application/json"}};
 
-  std::size_t PAYLOAD_LEN = 129;
-  const char payload[PAYLOAD_LEN] =
+  const char payload[] =
       "airSensors,sensor_id=TLM0201 "
       "temperature=73.97038159354763,humidity=35.23103248356096,co=0."
       "48445310567793615 1630424257000000000";

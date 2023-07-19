@@ -33,8 +33,7 @@ void handle_incoming_tcp_connection(sockpp::tcp_socket sock) {
 
 int main(int argc, char *argv[]) {
   std::cout << "PayloadDebugServer - TCP Payload visualisation client - Robert "
-               "Koziarski 2023 (https://github.com/Treborsky)"
-            << '\n'
+               "Koziarski 2023 (https://github.com/Treborsky)\n"
             << "using sockcpp(https://github.com/fpagliughi/sockpp) "
             << sockpp::SOCKPP_VERSION << '\n'
             << std::endl;
