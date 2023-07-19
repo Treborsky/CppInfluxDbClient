@@ -37,7 +37,7 @@ int main(int argc, char **argv) {
         address = std::string{argv[i]};
       }
       case 2: {
-        address = std::string{argv[i]};
+        port = std::string{argv[i]};
       }
       default: {
         break;
@@ -54,8 +54,8 @@ int main(int argc, char **argv) {
   std::cout << "Sending POST request to server" << std::endl;
   httplib::Headers post_headers{
       {"Authorization Token",
-       "vxEubvMV7U6AJE_S7wZ4BZgIuSTBgVUK8wvy-"
-       "a6V87Jx4USdLTmA6Mx3lfq9SiF8EqOouCQlgIivTD-_4xEK0w=="},
+       "6fgRs4NU_CCaqGGdJk1ZqlnZGKipPAN51vHem2pGCarjHIpAc_t6zUiRJs-"
+       "nEUThrqdZOQw-FcgsODqPn0e65Q==="},
       {"Content-Type", "text/plain; charset=utf-8"},
       {"Accept", "application/json"}};
 
@@ -66,8 +66,13 @@ int main(int argc, char **argv) {
 
   const std::string content_type{"text/plain"};
 
+  std::string write_url{"/api/v2/write"};
+
+  write_url += "?org=robert.koziarski@solarboat.agh.edu.pl&bucket=cpp-testing&"
+               "precision=ns";
+
   httplib::Result res =
-      cli.Post("/api/v2/write", post_headers, payload, content_type);
+      cli.Post(write_url, post_headers, payload, content_type);
 
   if (res) {
     std::cout << "POST success:" << '\n'
